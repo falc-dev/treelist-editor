@@ -1,0 +1,40 @@
+{
+  "name": "treechildren-editor",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "build": "webpack --mode=production",
+    "dev": "webpack-dev-server --open --mode=development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arkaik/treechildren-editor.git"
+  },
+  "author": "FALC",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arkaik/treechildren-editor/issues"
+  },
+  "homepage": "https://github.com/arkaik/treechildren-editor#readme",
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "@svgr/webpack": "^5.4.0",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^4.3.0",
+    "style-loader": "^2.0.0",
+    "webpack": "^4.32.0",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.5.1"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6",
+    "pullstate": "^1.19.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-quill": "^2.0.0-beta.2",
+    "recoil": "^0.1.2",
+    "styled-components": "^5.2.0"
+  }
+}
