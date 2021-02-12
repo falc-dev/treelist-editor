@@ -15,10 +15,10 @@ export const editableNodeState = selector({
   key: "editableNode",
   get: ({ get }) => {
     const id = get(editableNodeIdState);
-    if (id) {
-      return get(treeNodeFamily(id));
+    if (id == null) {
+      return null;
     }
-    return null;
+    return get(treeNodeFamily(id));
   },
   set: ({ set }, newValue) => {
     set(editableNodeIdState, newValue);
