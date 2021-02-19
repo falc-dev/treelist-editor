@@ -4,7 +4,7 @@ import classnames from "classnames";
 
 import TopBar from "components/TopBar";
 import SideMenu from "components/SideMenu/SideMenu";
-import TreeEditor from "components/TreeEditor";
+import TreeEditor from "components/TreeEditor/TreeEditor";
 import NodePanel from "components/NodePanel/NodePanel";
 
 const Layout = ({ className, children }) => {

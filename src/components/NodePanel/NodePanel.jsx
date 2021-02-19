@@ -5,11 +5,14 @@ import { useRecoilValue } from "recoil";
 
 import { editableNodeState } from "stores/editor";
 
+import useWindowSize from "../../hooks/useWindowSize.js";
 import useNodePanel from "./useNodePanel.js";
 import NodeInfo from "./NodeInfo/NodeInfo";
 import Editor from "components/QuillEditor/QuillEditor.jsx";
 
 const NodePanel = ({ className }) => {
+  const windowSize = useWindowSize();
+  const [hidden, setHidden] = useState(true);
   const node = useRecoilValue(editableNodeState);
   const [internalValue, setInternalValue] = useState("");
   const { changeValue } = useNodePanel();
@@ -19,10 +22,28 @@ const NodePanel = ({ className }) => {
   }, [node]);
 
   return (
-    <div className={classnames("node-panel", className)}>
+    <div
+      className={classnames(
+        "node-panel",
+        { "node-panel--hidden": hidden },
+        className
+      )}
+    >
+      {windowSize.width <= 768 && (
+        <div className="node-panel__close">
+          <button
+            onClick={() => {
+              setHidden(true);
+            }}
+          >
+            Close
+          </button>
+        </div>
+      )}
       <NodeInfo node={node} />
       <Editor
         className="modal__editor"
+        disabled={!node}
         onChange={(html) => setInternalValue(html)}
         onSave={() => {
           changeValue(node.id, internalValue);
@@ -41,17 +62,25 @@ export default styled(NodePanel)`
   flex-direction: column;
   z-index: 5;
 
-  .modal__close-button {
+  & > div + div {
+    margin-top: 16px;
+  }
+
+  .node-panel__close-button {
     align-self: flex-start;
   }
 
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 768px) {
     & {
       position: fixed;
       top: 0px;
       left: 0px;
       width: 100vw;
       height: 100vh;
+    }
+
+    &.node-panel--hidden {
+      display: none;
     }
   }
 `;
