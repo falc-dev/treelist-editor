@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import classnames from "classnames";
 
 import TopBar from "components/TopBar";
 import SideMenu from "components/SideMenu/SideMenu";
 import TreeEditor from "components/TreeEditor";
-import EditorModal from "components/EditorModal/EditorModal";
+import NodePanel from "components/NodePanel/NodePanel";
 
 const Layout = ({ className, children }) => {
   const [isMenuOpen, setMenuOpen] = useState(false);
 
   return (
-    <div className={className}>
+    <div className={classnames("layout", className)}>
       <TopBar
         onToggleMenu={() => {
           setMenuOpen((_) => !_);
@@ -24,22 +25,27 @@ const Layout = ({ className, children }) => {
       />
       <div className="layout__content">
         <TreeEditor className="layout__tree-editor" />
-        <EditorModal className="layout__editor-modal" />
+        <NodePanel className="layout__node-panel" />
       </div>
     </div>
   );
 };
 
 export default styled(Layout)`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
   .layout__content {
     display: flex;
+    flex-grow: 1;
   }
 
   .layout__tree-editor {
     flex: 1 1 0;
   }
 
-  .layout__editor-modal {
+  .layout__node-panel {
     flex: 1 1 0;
   }
 `;
