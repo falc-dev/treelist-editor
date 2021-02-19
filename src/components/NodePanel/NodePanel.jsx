@@ -1,39 +1,26 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import classnames from "classnames";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 
-import { editorVisibilityState, editableNodeState } from "stores/editor";
+import { editableNodeState } from "stores/editor";
 
-import useEditorModal from "./useEditorModal.js";
+import useNodePanel from "./useNodePanel.js";
+import NodeInfo from "./NodeInfo/NodeInfo";
 import Editor from "components/QuillEditor/QuillEditor.jsx";
 
-const EditorModal = ({ className }) => {
-  const [isEditorVisible, setEditorVisibility] = useRecoilState(
-    editorVisibilityState
-  );
+const NodePanel = ({ className }) => {
   const node = useRecoilValue(editableNodeState);
   const [internalValue, setInternalValue] = useState("");
-  const { changeValue } = useEditorModal();
+  const { changeValue } = useNodePanel();
 
   useEffect(() => {
-    if (node) {
-      setInternalValue(node.text);
-    }
+    setInternalValue(node?.text ?? "");
   }, [node]);
 
-  if (!isEditorVisible) return null;
-
   return (
-    <div className={classnames(className, "modal")}>
-      <button
-        className="modal__close-button"
-        onClick={() => {
-          setEditorVisibility(false);
-        }}
-      >
-        Close
-      </button>
+    <div className={classnames("node-panel", className)}>
+      <NodeInfo node={node} />
       <Editor
         className="modal__editor"
         onChange={(html) => setInternalValue(html)}
@@ -46,7 +33,9 @@ const EditorModal = ({ className }) => {
   );
 };
 
-export default styled(EditorModal)`
+export default styled(NodePanel)`
+  border-left: solid 2px black;
+  padding: 16px;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -58,7 +47,7 @@ export default styled(EditorModal)`
 
   @media screen and (max-width: 500px) {
     & {
-      position: absolute;
+      position: fixed;
       top: 0px;
       left: 0px;
       width: 100vw;
