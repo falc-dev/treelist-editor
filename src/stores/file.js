@@ -1,5 +1,5 @@
-import { Store } from "pullstate";
 import { atom, selector, atomFamily } from "recoil";
+import { idState } from "./id.js";
 
 export const fileNameState = atom({
   key: "fileName",
@@ -70,9 +70,16 @@ export const fileState = selector({
     };
   },
   set: ({ set }, newValue) => {
-    const { fileName, treeRoot, treeNodes = {} } = newValue;
+    const {
+      fileName,
+      treeRoot,
+      treeNodes = {},
+      freeKeys = [],
+      nextUpperKey
+    } = newValue;
     set(treeRootState, treeRoot);
     set(treeNodesState, treeNodes);
     set(fileNameState, fileName);
+    set(idState, { freeKeys, nextUpperKey });
   }
 });
