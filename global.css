@@ -13,3 +13,12 @@ body {
 svg {
   height: 100%;
 }
+
+ol,
+ul {
+  margin: 0;
+}
+
+div {
+  box-sizing: border-box;
+}
