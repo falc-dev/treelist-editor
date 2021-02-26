@@ -60,7 +60,6 @@ export default styled(NodePanel)`
   background-color: white;
   display: flex;
   flex-direction: column;
-  z-index: 5;
 
   & > div + div {
     margin-top: 16px;
@@ -77,6 +76,7 @@ export default styled(NodePanel)`
       left: 0px;
       width: 100vw;
       height: 100vh;
+      z-index: 10;
     }
 
     &.node-panel--hidden {

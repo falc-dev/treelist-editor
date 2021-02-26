@@ -20,4 +20,8 @@ const TreeEditor = ({ className }) => {
 
 export default styled(TreeEditor)`
   padding: 16px;
+
+  .tree-editor__viewer {
+    margin-bottom: 8px;
+  }
 `;

@@ -32,9 +32,14 @@ const Layout = ({ className, children }) => {
 };
 
 export default styled(Layout)`
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+  & {
+    --header-height: 64px;
+
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-top: var(--header-height);
+  }
 
   .layout__content {
     display: flex;

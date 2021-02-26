@@ -16,9 +16,16 @@ const TopBar = ({ className, onToggleMenu }) => {
 };
 
 export default styled(TopBar)`
-  display: flex;
-  height: 64px;
-  border-bottom: solid 2px black;
+  & {
+    position: fixed;
+    top: 0;
+    display: flex;
+    background: white;
+    height: var(--header-height);
+    width: 100%;
+    border-bottom: solid 2px black;
+    z-index: 5;
+  }
 
   .top-bar__menu-button {
     height: 64px;

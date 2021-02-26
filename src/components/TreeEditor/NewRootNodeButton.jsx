@@ -13,13 +13,16 @@ const NewRootNodeButton = ({ className }) => {
       }}
       className={className}
     >
-      + Add node
+      + ADD NODE
     </button>
   );
 };
 
 export default styled(NewRootNodeButton)`
-  border: dashed 1px silver;
+  border: dashed 1px #ccc;
+  color: #ccc;
   background: transparent;
+  font-weight: bold;
   width: 100%;
+  padding: 8px;
 `;
