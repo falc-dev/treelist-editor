@@ -56,7 +56,7 @@ export const treeNodesState = selector({
 });
 
 export const selectedNodeState = atom({
-  key: "selectedNodes",
+  key: "selectedNode",
   default: undefined
 });
 

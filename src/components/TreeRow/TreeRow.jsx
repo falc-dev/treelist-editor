@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 
 import TreeViewer from "components/TreeViewer";
-import RowActionBar from "components/RowActionBar/RowActionBar";
 import RowSwitch from "components/TreeRow/RowSwitch";
 import { treeNodeFamily } from "stores/file";
 
@@ -50,7 +49,6 @@ const TreeRow = ({ className, index }) => {
           className="row__value"
           dangerouslySetInnerHTML={{ __html: text }}
         />
-        {selected && <RowActionBar index={index} />}
       </div>
 
       <TreeViewer
