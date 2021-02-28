@@ -19,6 +19,7 @@ const TreeEditor = ({ className }) => {
 };
 
 export default styled(TreeEditor)`
+  overflow-y: auto;
   padding: 16px;
 
   .tree-editor__viewer {

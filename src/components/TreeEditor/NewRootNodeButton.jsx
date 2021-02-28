@@ -25,4 +25,5 @@ export default styled(NewRootNodeButton)`
   font-weight: bold;
   width: 100%;
   padding: 8px;
+  cursor: pointer;
 `;

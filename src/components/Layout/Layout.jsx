@@ -33,17 +33,15 @@ const Layout = ({ className, children }) => {
 
 export default styled(Layout)`
   & {
-    --header-height: 64px;
-
     height: 100%;
     display: flex;
     flex-direction: column;
-    padding-top: var(--header-height);
   }
 
   .layout__content {
     display: flex;
     flex-grow: 1;
+    overflow-y: hidden;
   }
 
   .layout__tree-editor {
