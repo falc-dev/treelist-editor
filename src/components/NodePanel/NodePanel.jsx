@@ -21,6 +21,14 @@ const NodePanel = ({ className }) => {
     setInternalValue(node?.text ?? "");
   }, [node]);
 
+  if (!node) {
+    return (
+      <div className={classnames("node-info", "node-info--unknown", className)}>
+        No selected node
+      </div>
+    );
+  }
+
   return (
     <div
       className={classnames(
@@ -33,7 +41,7 @@ const NodePanel = ({ className }) => {
         <div className="node-panel__close">
           <button
             onClick={() => {
-              setHidden(true);
+              setHidden((_) => !_);
             }}
           >
             Close
@@ -67,20 +75,5 @@ export default styled(NodePanel)`
 
   .node-panel__close-button {
     align-self: flex-start;
-  }
-
-  @media screen and (max-width: 768px) {
-    & {
-      position: fixed;
-      top: 0px;
-      left: 0px;
-      width: 100vw;
-      height: 100vh;
-      z-index: 10;
-    }
-
-    &.node-panel--hidden {
-      display: none;
-    }
   }
 `;
