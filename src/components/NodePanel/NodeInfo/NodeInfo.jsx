@@ -3,13 +3,6 @@ import classnames from "classnames";
 import styled from "styled-components";
 
 const NodeInfo = ({ className, node }) => {
-  if (!node) {
-    return (
-      <div className={classnames("node-info", "node-info--unknown", className)}>
-        No selected node
-      </div>
-    );
-  }
   return (
     <div className={classnames("node-info", className)}>
       <p>ID: {node?.id}</p>
