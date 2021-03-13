@@ -8,6 +8,7 @@ import { editableNodeState } from "stores/editor";
 import useWindowSize from "../../hooks/useWindowSize.js";
 import useNodePanel from "./useNodePanel.js";
 import NodeInfo from "./NodeInfo/NodeInfo";
+import NodeActionBar from "./NodeActionBar/NodeActionBar";
 import Editor from "components/QuillEditor/QuillEditor.jsx";
 
 const NodePanel = ({ className }) => {
@@ -49,6 +50,7 @@ const NodePanel = ({ className }) => {
         </div>
       )}
       <NodeInfo node={node} />
+      <NodeActionBar node={node} />
       <Editor
         className="modal__editor"
         disabled={!node}
