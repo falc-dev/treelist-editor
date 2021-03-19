@@ -1,23 +1,20 @@
 import React from "react";
 import classnames from "classnames";
 import styled from "styled-components";
-import { useRecoilState, useSetRecoilState } from "recoil";
 
 import useNodeActionBar from "./useNodeActionBar";
 
 import RowBelow from "icons/RowBelow.svg";
 import AddSubnode from "icons/AddSubnode.svg";
-import Ok from "icons/Ok.svg";
-import Edit from "icons/Edit.svg";
 
-const NodeActionBar = ({ className, index }) => {
-  const { insertRowBelow } = useNodeActionBar();
+const NodeActionBar = ({ className, node }) => {
+  const { insertRowBelow, addChildren } = useNodeActionBar();
   return (
     <div className={classnames(className, "row-action-bar")}>
-      <button onClick={() => insertRowBelow(index)} title="Insert row below">
+      <button onClick={() => insertRowBelow(node.id)} title="Insert row below">
         <RowBelow />
       </button>
-      <button onClick={() => {}} title="Add child node">
+      <button onClick={() => addChildren(node.id)} title="Add child node">
         <AddSubnode />
       </button>
     </div>
@@ -32,6 +29,7 @@ export default styled(NodeActionBar)`
 
   button {
     border: 0px;
+    cursor: pointer;
     padding: 1px;
     height: 26px;
     width: 26px;

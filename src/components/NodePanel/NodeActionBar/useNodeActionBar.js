@@ -5,7 +5,7 @@ import useRootNodes from "hooks/useRootNodes";
 export default () => {
   const { generateId } = useRootNodes();
   const insertRowBelow = useRecoilCallback(({ snapshot, set }) => (id) => {
-    const currentNode = snapshot.getLoadable(treeNodeFamily(id));
+    const { contents: currentNode } = snapshot.getLoadable(treeNodeFamily(id));
     // Get parent node
     const parentId = currentNode.parent;
     const childId = generateId();
@@ -26,17 +26,28 @@ export default () => {
         parent: parentId
       }));
       // Insert new node after the current one
-      const currentOnParent = parentNode.list.indexOf(currentId);
-      const updatedParentNodeList = parentNode.list.slice();
+      const currentOnParent = parentNode.children.indexOf(id);
+      const updatedParentNodeList = parentNode.children.slice();
       updatedParentNodeList.splice(currentOnParent + 1, 0, childId);
       set(treeNodeFamily(parentId), (node) => ({
         ...node,
-        list: updatedParentNodeList
+        children: updatedParentNodeList
       }));
     }
   });
 
-  const addChildren = () => {};
+  const addChildren = useRecoilCallback(({ snapshot, set }) => (id) => {
+    const childId = generateId();
+    set(treeNodeFamily(childId), (node) => ({
+      ...node,
+      id: childId,
+      parent: id
+    }));
+    set(treeNodeFamily(id), (node) => ({
+      ...node,
+      children: [...node.children, childId]
+    }));
+  });
 
   return {
     insertRowBelow,
