@@ -17,9 +17,10 @@ export default () => {
         return updatedTreeRootList;
       });
     } else {
-      const parentNode = snapshot.getLoadable(treeNodeFamily(parentId));
+      const { contents: parentNode } = snapshot.getLoadable(
+        treeNodeFamily(parentId)
+      );
       // Generate sibling node
-
       set(treeNodeFamily(childId), (node) => ({
         ...node,
         id: childId,
