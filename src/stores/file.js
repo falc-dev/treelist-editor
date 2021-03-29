@@ -18,18 +18,12 @@ export const treeNodeListState = atom({
 
 export const treeNodeFamily = atomFamily({
   key: "node",
-  default: ({
+  default: (id) => ({
     id,
-    parent = null,
-    children = [],
-    text = "",
-    selected = false
-  }) => ({
-    id,
-    parent,
-    children,
-    text,
-    selected
+    parent: null,
+    children: [],
+    text: "",
+    selected: false
   })
 });
 

@@ -5,6 +5,11 @@ import EditorSave from "icons/EditorSave.svg";
 
 import "react-quill/dist/quill.snow.css";
 
+var Parchment = Quill.import("parchment");
+var Block = Parchment.query("block");
+Block.tagName = "DIV";
+Quill.register(Block, true);
+
 const CustomToolbar = ({ onSave }) => (
   <div id="toolbar">
     <button className="ql-bold"></button>
@@ -38,16 +43,23 @@ const CustomToolbar = ({ onSave }) => (
   </div>
 );
 
-const Editor = ({ className, disabled, onChange, onSave, value }) => {
+const Editor = ({ className, disabled, onSave, value }) => {
+  const [internalValue, setInternalValue] = useState(value);
   return (
     <div>
-      <CustomToolbar onSave={onSave} />
+      <CustomToolbar
+        onSave={() => {
+          onSave(internalValue);
+        }}
+      />
       <ReactQuill
         className={classnames(className, "editor")}
         theme="snow"
         readOnly={disabled}
-        value={value}
-        onChange={onChange}
+        value={internalValue}
+        onChange={(html) => {
+          setInternalValue(html);
+        }}
         modules={{
           toolbar: {
             container: "#toolbar"

@@ -10,7 +10,7 @@ export const editableNodeState = selector({
   key: "editableNode",
   get: ({ get }) => {
     const id = get(selectedNodeState);
-    if (id == null) {
+    if (id === null || id === undefined) {
       return null;
     }
     return get(treeNodeFamily(id));

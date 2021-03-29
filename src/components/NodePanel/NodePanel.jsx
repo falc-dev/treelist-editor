@@ -14,12 +14,7 @@ const NodePanel = ({ className }) => {
   const windowSize = useWindowSize();
   const [hidden, setHidden] = useState(true);
   const node = useRecoilValue(editableNodeState);
-  const [internalValue, setInternalValue] = useState("");
   const { changeValue } = useNodePanel();
-
-  useEffect(() => {
-    setInternalValue(node?.text ?? "");
-  }, [node]);
 
   if (!node) {
     return (
@@ -52,11 +47,8 @@ const NodePanel = ({ className }) => {
       <Editor
         className="modal__editor"
         disabled={!node}
-        onChange={(html) => setInternalValue(html)}
-        onSave={() => {
-          changeValue(node.id, internalValue);
-        }}
-        value={internalValue}
+        onSave={changeValue(node?.id)}
+        value={node?.text}
       />
     </div>
   );
